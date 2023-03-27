@@ -1,39 +1,23 @@
-#include <string.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
- * add_dnodeint_end - Add a node at the end of a list
+ * print_dlistint - Prints a doubly linkedlist of integers
  *
- * @head: The address of the pointer to the first element of the list
- * @n: The number to store in the new element
+ * @h: A pointer to the first element of a list
  *
- * Return: A pointer to the new element
+ * Return: The number of element printed
  */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+size_t print_dlistint(const dlistint_t *h)
 {
-	dlistint_t *new;
-	dlistint_t *l;
+	size_t n;
 
-	new = malloc(sizeof(dlistint_t));
-	if (new == NULL)
+	n = 0;
+	while (h)
 	{
-		return (NULL);
+		printf("%d\n", h->n);
+		h = h->next;
+		n++;
 	}
-	new->n = n;
-	new->next = NULL;
-	if (*head == NULL)
-	{
-		*head = new;
-		new->prev = NULL;
-		return (new);
-	}
-	l = *head;
-	while (l->next != NULL)
-	{
-		l = l->next;
-	}
-	l->next = new;
-	new->prev = l;
-	return (new);
+	return (n);
 }
